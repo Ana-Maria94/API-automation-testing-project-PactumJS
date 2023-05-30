@@ -1,0 +1,28 @@
+name: Pactum
+
+on:
+  pull_request:
+    paths-ignore:
+     - 'docs/**'
+     - 'README.md'
+    branches: 
+      - master
+  push:
+    paths-ignore:
+     - 'docs/**'
+     - 'README.md'
+    branches: 
+      - master
+
+jobs:
+  pactum-run:
+    runs-on: ubuntu-22.04
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Pactum run
+      uses: actions/checkout@v3.2.0
+      with:
+       build: npm install
+       start: npx mocha tests
